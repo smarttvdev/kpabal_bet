@@ -252,3 +252,49 @@ Route::post('user-password/reset', 'User\ResetPasswordController@reset');
 
 
 
+// <----------  Api Integration Part  ---------------->
+Route::get('/TournamentList/{league_group}/{language_code}','SoccerController@getTournamentList');
+Route::get('/dailySchedule/{league_group}/{language_code}/{year}/{month}/{date}','SoccerController@getDailySchedule');
+Route::get('/dailyResults/{league_group}/{language_code}/{year}/{month}/{date}','SoccerController@getDailyResults');
+Route::get('/DeletedMatches/{league_group}/{language_code}','SoccerController@getDeletedMatches');
+Route::get('/LiveResults/{league_group}/{language_code}','SoccerController@getLiveResults');
+Route::get('/MatchFun/{match_id}/{league_group}/{language_code}','SoccerController@getMatchFun');
+Route::get('/MatchLineup/{match_id}/{league_group}/{language_code}','SoccerController@getMatchLineup');
+Route::get('/MatchProbability/{match_id}/{league_group}/{language_code}','SoccerController@getMatchProbability');
+Route::get('/MatchSummary/{match_id}/{league_group}/{language_code}','SoccerController@getMatchSummary');
+Route::get('/MatchTimeline/{match_id}/{league_group}/{language_code}','SoccerController@getMatchTimeline');
+Route::get('/MissingPlayer/{tournament_id}/{league_group}/{language_code}','SoccerController@getMissingPlayer');
+Route::get('/PlayerProfile/{player_id}/{league_group}/{language_code}','SoccerController@getPlayerProfile');
+Route::get('/TeamProfile/{team_id}/{league_group}/{language_code}','SoccerController@getTeamProfile');
+Route::get('/TeamResults/{team_id}/{league_group}/{language_code}','SoccerController@getTeamResults');
+Route::get('/TeamSchedule/{team_id}/{league_group}/{language_code}','SoccerController@getTeamSchedule');
+Route::get('/TeamStatistics/{tournament_id}/{team_id}/{league_group}/{language_code}','SoccerController@getTeamStatistics');
+Route::get('/TeamVsTeam/{team_id1}/{team_id2}/{league_group}/{language_code}','SoccerController@getTeamVsTeam');
+Route::get('/TournamentInfo/{tournament_id}/{league_group}/{language_code}','SoccerController@getTournamentInfo');
+Route::get('/TournamentLeaders/{tournament_id}/{league_group}/{language_code}','SoccerController@getTournamentLeaders');
+Route::get('/TournamentLiveStandings/{tournament_id}/{league_group}/{language_code}','SoccerController@getTournamentLiveStandings');
+Route::get('/TournamentResults/{tournament_id}/{league_group}/{language_code}','SoccerController@getTournamentResults');
+Route::get('/TournamentSchedule/{tournament_id}/{league_group}/{language_code}','SoccerController@getTournamentSchedule');
+Route::get('/TournamentSeasons/{tournament_id}/{league_group}/{language_code}','SoccerController@getTournamentSeasons');
+Route::get('/TournamentStandings/{tournament_id}/{league_group}/{language_code}','SoccerController@getTournamentStandings');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

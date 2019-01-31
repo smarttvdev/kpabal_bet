@@ -25,8 +25,6 @@ class FrontendController extends Controller{
             $d->status = 2;
             $d->save();
         }
-
-
     }
 
     public function soccers(){
@@ -101,7 +99,6 @@ class FrontendController extends Controller{
             if($key=='results'){
                 foreach($result as $keyval => $value){
 
-       
                   $input['match_id'] = str_replace('sr:match:','',$value->sport_event->id); 
                   $input['scheduled'] = $value->sport_event->scheduled;
                   $input['tournament_round'] = serialize($value->sport_event->tournament_round); 
@@ -114,18 +111,20 @@ class FrontendController extends Controller{
                   $input['competitors'] = serialize($value->sport_event->competitors);
                   $input['tournament_name'] = $value->sport_event->tournament->name; 
                   $input['tournament_id'] = str_replace('sr:tournament:','',$value->sport_event->tournament->id); 
-                  $input['status'] = '1'; 
-                  $recode = Soccer::where('match_id',$input['match_id']);
-                  $recode->delete();
-                  Soccer::create($input);
-                  
-                 /*  
-                  
-                  
-                   */                  
+                  $input['status'] = '1';
+
+                  $temps = Soccer::where('match_id',$input['match_id'])->get();
+                    if (!$temps->first()){
+                        Soccer::create($input);
+                    }
+                    else{
+                        $recode=$temps->first();
+                        $recode->update($input);
+                    }
                 }
             }
         }
+//        exit();
         curl_close($curlSession);
         $soccer = Soccer::where('status','1')->groupBy('tournament_name')->get();
         $matches = $data['matches'];

@@ -11,3 +11,11 @@
 [12-Dec-2018 19:21:55 Asia/Dhaka] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/core/vendor/symfony/http-kernel/Exception/HttpException.php on line 24
 [12-Dec-2018 19:21:55 Asia/Dhaka] PHP Fatal error:  Exception thrown without a stack frame in Unknown on line 0
 [14-Dec-2018 17:22:34 UTC] PHP Parse error:  syntax error, unexpected '*', expecting end of file in /home1/kpabalco/public_html/betting/index.php on line 3
+[30-Jan-2019 18:34:29 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
+[30-Jan-2019 18:36:56 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
+[30-Jan-2019 18:38:15 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
+[30-Jan-2019 18:38:22 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
+[30-Jan-2019 18:39:04 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
+[30-Jan-2019 19:49:01 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
+[30-Jan-2019 19:49:26 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
+[30-Jan-2019 20:18:24 UTC] PHP Parse error:  syntax error, unexpected '?', expecting variable (T_VARIABLE) in /home1/kpabalco/public_html/betting/vendor/symfony/console/Output/Output.php on line 40
