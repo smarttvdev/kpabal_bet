@@ -281,6 +281,12 @@ Route::get('/TournamentStandings/{tournament_id}/{league_group}/{language_code}'
 
 
 
+Route::get('bookmaker/construct/{country}/{entry_type}/{stake_type}/{bookmaker_id}/{odds_type_id}/{odds_field_id}/{referrer_id}',
+            'SoccerController@ConstructBookMark');
+
+Route::get('bookmaker/linkpattern/{package}/{access_level}/{language_code}/{odds_format}','SoccerController@BookMarkLink');
+
+Route::get('books/{package}/{access_level}/{language_code}/{odds_format}','SoccerController@getBooks');
 
 
 

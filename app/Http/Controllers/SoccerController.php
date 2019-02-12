@@ -32,15 +32,24 @@ use App\Model\Soccer\TournamentSchedule;
 
 class SoccerController extends Controller{
 
-    public $api_key='q6hk5teg3qs59a2w4ubnxvqt';
+//    public $api_key='q6hk5teg3qs59a2w4ubnxvqt';
+    public $api_key="99sebddgk5wg6bp35t99ff95";
     public $access_level='xt';
     public $version=3;
-    public $league_group='eu';
+//    public $league_group='eu';
+    public $league_group='global';
     public $language_code='ko';
     public $format='json';
 
-    public function getResponse($url){
-        $url=$url."?api_key=".$this->api_key;
+    public $odd_api_row_key='r4g7e8fkeetj3xp7fjw9wp76';
+    public $odd_api_us_key='58k3dmv5cmjdgsx5q4u9xgej';
+    public $ood_version=1;
+
+    public function getResponse($url1,$key=null){
+        if (is_null($key))
+            $url=$url1."?api_key=".$this->api_key;
+        else
+            $url=$url1;
         echo($url);
 //        exit();
         $curlSession = curl_init();
@@ -968,6 +977,69 @@ class SoccerController extends Controller{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// Odds Part ------------
+
+    public function getOddResponse($url1,$key=null){
+        if (is_null($key))
+            $url=$url1."?api_key=".$this->odd_api_row_key;
+        else
+            $url=$url1;
+        echo($url);
+//        exit();
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, $url);
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+        $jsonData = curl_exec($curlSession);
+        $results = json_decode($jsonData);
+        curl_close($curlSession);
+        return $results;
+    }
+
+
+
+
+    public function ConstructBookMark($country_name, $entry_type,$stake_type,$bookmaker_id,$odds_type_id,$odds_field_id, $referrer_id){
+        $url="https://dt.sportradar.com/?label.0=environment:desktop&label.1=country:".$country_name
+            ."&label.2=entry:".$entry_type."&label.3=stake:".$stake_type."&bookmaker=".$bookmaker_id."&oddstypeid=".$odds_type_id
+            ."&oddsfieldid=".$odds_field_id."&ref=".$referrer_id;
+        $json_data=$this->getOddResponse($url,'1');
+        echo "<pre>";
+        print_r($json_data);
+
+    }
+
+
+    public function BookMarkLink($package,$access_level,$language_code,$odds_format){
+        $url="https://api.sportradar.us/oddscomparison-".
+            $package.$access_level."1/".$language_code."/".$odds_format."/bookmakers/link_patterns.json";
+        $json_data=$this->getOddResponse($url);
+        echo "<pre>";
+        print_r($json_data);
+    }
+
+
+    public function getBooks($package,$access_level,$language_code,$odds_format){
+        $url="https://api.sportradar.us/oddscomparison-".$package.$access_level."1/".$language_code."/$odds_format/books.json";
+        $json_data=$this->getOddResponse($url);
+        echo "<pre>";
+        print_r($json_data);
+
+
+
+    }
 
 
 
