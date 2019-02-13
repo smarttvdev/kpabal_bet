@@ -289,18 +289,9 @@ Route::get('bookmaker/linkpattern/{package}/{access_level}/{language_code}/{odds
 Route::get('books/{package}/{access_level}/{language_code}/{odds_format}','SoccerController@getBooks');
 
 
+// <------------------   My Code   ----------------------->
 
-
-
-
-
-
-
-
-
-
-
-
+Route::get('/soccer/news/feed','NewsController@feed');
 
 
 

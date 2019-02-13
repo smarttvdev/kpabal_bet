@@ -10,7 +10,6 @@ use App\BetQuestion;
 use App\Soccer;
 use Carbon\Carbon;
 use App\Helper;
-
 use App\Menu;
 use App\Faq;
 use App\Advertisment;
@@ -91,9 +90,7 @@ class FrontendController extends Controller{
         curl_setopt($curlSession, CURLOPT_URL, $url);
         curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
         curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-
         $jsonData = curl_exec($curlSession);
-
         $results = json_decode($jsonData);
         foreach($results as $key => $result){
             if($key=='results'){
@@ -124,12 +121,13 @@ class FrontendController extends Controller{
                 }
             }
         }
-//        exit();
         curl_close($curlSession);
         $soccer = Soccer::where('status','1')->groupBy('tournament_name')->get();
         $matches = $data['matches'];
         return view('front.index',compact('matches','soccer'));
     }
+
+
     public function viewMore()
     {
         $now = Carbon::now();

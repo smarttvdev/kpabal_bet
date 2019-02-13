@@ -1,85 +1,66 @@
 @extends('layout')
 
 @section('content')
-
     <div class="bet-section" id="min-height-home" style="background: #004466;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-3">
                     <aside class="widget card widget--sidebar widget-standings">
-
                         <div class="widget-content">
-        <div class="inplay_title">
-            <h4>Soccer</h4>
-        </div>
-
-
-    <div class="widget__content card__content extar-margin">
-        <div class="panel-group" id="accordions">
-            @foreach($soccer as $data)
-            <div class="panel pad1">
-                <div class="panel-heading side-events-item">
-
-                        <div class="left">
-                            @php
-                                $slug =$data->tournament_name
-                            @endphp
-                            <a href="{{url('/soccer-event/'.$data->id.'/'.str_slug($slug))}}"><b>{{$data->tournament_name}}</b></a>
+                            <div class="inplay_title">
+                                <h4>Soccer</h4>
+                            </div>
+                            <div class="widget__content card__content extar-margin">
+                                <div class="panel-group" id="accordions">
+                                    @foreach($soccer as $data)
+                                        <div class="panel pad1">
+                                            <div class="panel-heading side-events-item">
+                                                <div class="left">
+                                                    @php
+                                                        $slug =$data->tournament_name
+                                                    @endphp
+                                                    <a href="{{url('/soccer-event/'.$data->id.'/'.str_slug($slug))}}"><b>{{$data->tournament_name}}</b></a>
+                                                </div>
+                                                <?php $competitors = unserialize($data->competitors); ?>
+                                                @if(count( $competitors) > 0 )
+                                                    <div class="right">
+                                                        <a data-toggle="collapse" data-parent="#accordions" href="#collapses{{$data->id}}"><i class="fa fa-plus"></i></a>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                            <div id="collapses{{$data->id}}" class="panel-collapse collapse">
+                                                <div class="panel-body live-match-body">
+                                                    <div class="live-matches-sidebar">
+                                                        <ul>
+                                                            <?php $getcompetitors = getcompetitors($data->tournament_name);
+                                                            foreach ($getcompetitors as $key => $value) {
+                                                                $data = unserialize($value->competitors);
+                                                                $name = getcompetitorName($value->match_id);
+                                                                $dataName = unserialize($name->competitors);
+                                                                $competitorId = $dataName[0]->name.'-vs-'.$dataName[1]->name;
+                                                                echo '<li><a><i class="fa fa-arrow-right"></i></a>';
+                                                                foreach ($data as $key1 => $dataval) {
+                                                                    $keyval = $key +1;
+                                                               ?>
+                                                                <a href="{{url('/soccer-match/'.$value->match_id.'/'.str_slug($competitorId))}}">
+                                                                   @if($key==1)
+                                                                   <span>vs</span>
+                                                                   @endif{{$dataval->name}} </a>
+                                                                <?php
+                                                                } echo '</li>';}
+                                                            ?>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
-                        <?php $competitors = unserialize($data->competitors); ?>
-                              
-                        @if(count( $competitors) > 0 )
-                        <div class="right">
-                            <a data-toggle="collapse" data-parent="#accordions"
-                                              href="#collapses{{$data->id}}"><i class="fa fa-plus"></i>
-                            </a>
-                        </div>
-                        @endif
-                       
-                </div>
-                <div id="collapses{{$data->id}}" class="panel-collapse collapse">
-                    <div class="panel-body live-match-body">
-                        <div class="live-matches-sidebar">
-                            <ul>
-                                
-                                <?php $getcompetitors = getcompetitors($data->tournament_name); 
-                                foreach ($getcompetitors as $key => $value) {
-                                    $data = unserialize($value->competitors);
-                                    $name = getcompetitorName($value->match_id);
-                                    $dataName = unserialize($name->competitors);
-                                    $competitorId = $dataName[0]->name.'-vs-'.$dataName[1]->name;
-                                    echo '<li><a><i class="fa fa-arrow-right"></i></a>';
-                                    foreach ($data as $key1 => $dataval) {
-                                        $keyval = $key +1;
-                                   ?>
-                                
-                                    <a href="{{url('/soccer-match/'.$value->match_id.'/'.str_slug($competitorId))}}">
-                                    
-                                     
-                                       @if($key==1)
-                                       <span>vs</span>
-                                       @endif{{$dataval->name}} </a>
-
-                                <?php    
-                                } echo '</li>';}
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-                @endforeach
-        </div>
-    </div>
-
-</div>
-
-</aside>
+                    </aside>
                     <aside class="widget card widget--sidebar widget-standings">
                         @include('partials.event')
-                        
-
                     </aside>
                 </div>
                 <div class="col-md-5">
